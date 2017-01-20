@@ -1,0 +1,72 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <link rel="stylesheet" href="ang.css">
+    </head>
+    <body ng-app="myApp">
+        <div >
+            <div ng-controller="myController">
+                <p> {{message}} </p>
+               <p>rows to display <br> <input type="number" step="1" min="0" max="5" ng-model="rowlimit"></p>  
+               <p>order by : <select ng-model="sortCol">
+                   <option value="name">name asc</option>
+                   <option value="gender">gender asc</option>
+               </select> </p>
+                
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date of Beath</th><th>Gender</th>
+                        <th>Salary(number)</th>
+                        <th>salary(currency)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="emp in employess | orderBy: sortCol : true | limitTo:rowlimit">
+                            <td> {{emp.name | uppercase}} </td>
+                            <td> {{emp.dateOfBirth | date:"dd/MM/yyyy"}} </td>
+                            <td> {{emp.gender |lowercase}} </td>
+                            <td> {{emp.salary|number:2}} </td><td> {{emp.salary|currency:"$":1}} </td>
+
+
+
+                        </tr>
+                    </tbody>
+                </table>
+
+
+
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Likes</th>
+                        <th>Dislike</th>
+                        <th>Like/Dislike</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="technology in technologies">
+                        <td>{{technology.name}}</td>
+                        <td>{{technology.likes}}</td>
+                        <td>{{technology.dislikes}}</td>
+                        <td>
+                            <input type="button" name="" ng-click="incrementLike(technology)">
+                             <input type="button" name="" ng-click="incrementdisLike(technology)">
+                        </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+                
+            </div>
+            
+
+        </div>
+        <script src="angular.js">  </script>
+        <script src="ang.js">  </script>
+        
+    </body>
+</html>
